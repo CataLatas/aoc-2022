@@ -22,21 +22,13 @@ const int OUTCOMES[][3] = {
 };
 
 int calculate_score(int opponent_move, int player_move) {
-    int score;
-
     // Map ('A' 'B' 'C') to (0 1 2)
     opponent_move -= 'A';
 
     // Map ('X' 'Y' 'Z') to (0 1 2)
     player_move -= 'X';
 
-    if (opponent_move == player_move) {
-        score = DRAW + player_move+1;
-    } else {
-        score = OUTCOMES[opponent_move][player_move] + player_move+1;
-    }
-
-    return score;
+    return OUTCOMES[opponent_move][player_move] + player_move+1;
 }
 
 int main() {

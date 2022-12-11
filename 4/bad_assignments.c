@@ -52,7 +52,7 @@ int main() {
 
     fseek(fin, SEEK_SET, 0);
     result = part2(fin);
-    printf("%d assignments pairs overlap at least partially\n", result);
+    printf("%d assignment pairs overlap at least partially\n", result);
 
     fclose(fin);
 

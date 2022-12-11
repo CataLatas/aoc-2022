@@ -19,7 +19,6 @@ int part1(FILE *file) {
     int lower2, upper2;
     while (fscanf(file, "%d-%d,%d-%d", &lower1, &upper1, &lower2, &upper2) == 4) {
         if (check_overlap(lower1, upper1, lower2, upper2)) {
-            //printf("OVERLAP! %d-%d,%d-%d\n", lower1, upper1, lower2, upper2);
             overlap_count++;
         }
     }
@@ -33,7 +32,6 @@ int part2(FILE *file) {
     int lower2, upper2;
     while (fscanf(file, "%d-%d,%d-%d", &lower1, &upper1, &lower2, &upper2) == 4) {
         if (check_overlap_2(lower1, upper1, lower2, upper2)) {
-            printf("OVERLAP! %d-%d,%d-%d\n", lower1, upper1, lower2, upper2);
             overlap_count++;
         }
     }
@@ -50,11 +48,11 @@ int main() {
 
     fin = safe_fopen("input.txt");
     result = part1(fin);
-    printf("%d assingment pairs fully overlap.\n", result);
+    printf("%d assignment pairs fully overlap.\n", result);
 
     fseek(fin, SEEK_SET, 0);
     result = part2(fin);
-    printf("%d assigments pairs overlap at least partially\n", result);
+    printf("%d assignments pairs overlap at least partially\n", result);
 
     fclose(fin);
 

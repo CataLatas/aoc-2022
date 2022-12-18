@@ -109,7 +109,7 @@ void mover_9001(int count, Stack *from, Stack *to) {
     free(crates);
 }
 
-void handle_movements(FILE *file, Stack *stacks, int stack_count, void (*mover)(int, Stack*, Stack*)) {
+void handle_movements(FILE *file, Stack *stacks, void (*mover)(int, Stack*, Stack*)) {
     int count, from_index, to_index;
     Stack *stack_from, *stack_to;
 
@@ -140,7 +140,7 @@ char* part1(FILE *file) {
     int stack_count;
 
     stacks = read_crates(file, &stack_count);
-    handle_movements(file, stacks, stack_count, mover_9000);
+    handle_movements(file, stacks, mover_9000);
     result = get_result(stacks, stack_count);
 
     free(stacks);
@@ -153,7 +153,7 @@ char* part2(FILE *file) {
     int stack_count;
 
     stacks = read_crates(file, &stack_count);
-    handle_movements(file, stacks, stack_count, mover_9001);
+    handle_movements(file, stacks, mover_9001);
     result = get_result(stacks, stack_count);
 
     free(stacks);

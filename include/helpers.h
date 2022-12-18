@@ -17,3 +17,4 @@ int read_line(FILE *file, char* const line);
 // Test the solution against the example input (assumes the existance of "exampleinput.txt")
 // Exits the program entirely if failed
 void assert_example(int (*solver)(FILE*), int expected);
+void assert_example_str(char* (*solver)(FILE*), char const* expected);

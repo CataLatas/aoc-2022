@@ -41,3 +41,20 @@ void assert_example(int (*solver)(FILE*), int expected) {
     fclose(example_file);
     puts("Example passed!");
 }
+
+void assert_example_str(char* (*solver)(FILE*), char const* expected) {
+    char *result;
+    FILE *example_file = safe_fopen("exampleinput.txt");
+
+    result = solver(example_file);
+    if (strcmp(result, expected)) {
+        fprintf(stderr, "Example failed. Expected \"%s\", but result was \"%s\"\n", expected, result);
+        exit(1);
+    }
+
+    fclose(example_file);
+    puts("Example passed!");
+
+    free(result);
+}
+

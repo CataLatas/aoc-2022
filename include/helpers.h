@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#define BUF_SIZE 1024 // May be overwritten
+#define BUF_SIZE 32767 // Yeah let's go with 32K
 
 #define TRUE  1
 #define FALSE 0

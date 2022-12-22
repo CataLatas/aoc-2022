@@ -5,23 +5,41 @@
 
 #define NOT_FOUND -1
 
+int find_start_of_packet(char const *line, int length, int packet_size) {
+    int i, j, k;
+    int found = FALSE;
+    int result;
+
+    // Horrible? Not sure
+    for (i = 0; i < length-packet_size && !found; i++) {
+        result = i + packet_size;
+        found = TRUE;
+
+        for (j = 0; j < packet_size && found; j++) {
+            for (k = j+1; k < packet_size && found; k++) {
+                found = (j != k && line[i+j] != line[i+k]);
+            }
+        }
+    }
+
+    if (!found) {
+        return NOT_FOUND;
+    }
+
+    return result;
+}
+
 int part1(FILE *file) {
     char line[BUF_SIZE];
     int length;
-    int i;
-    int result = NOT_FOUND;
+    int result;
 
     length = read_line(file, line) + 1;
     puts(line);
 
-    for (i = 0; i < length-4 && result == NOT_FOUND; i++) {
-        // The fuck... Will need to be changed for part2
-        if (!(line[i+0] == line[i+1] || line[i+0] == line[i+2] || line[i+0] == line[i+3] || line[i+1] == line[i+2] || line[i+1] == line[i+3] || line[i+2] == line[i+3])) {
-            result = i + 4;
-        }
-    }
+    result = find_start_of_packet(line, length, 4);
 
-    if (result == -1) {
+    if (result == NOT_FOUND) {
         fprintf(stderr, "Okay wtf.\n");
         exit(1);
     }
@@ -30,7 +48,21 @@ int part1(FILE *file) {
 }
 
 int part2(FILE *file) {
-    return 666; // Not implemented
+    char line[BUF_SIZE];
+    int length;
+    int result;
+
+    length = read_line(file, line) + 1;
+    puts(line);
+
+    result = find_start_of_packet(line, length, 14);
+
+    if (result == NOT_FOUND) {
+        fprintf(stderr, "Okay wtf.\n");
+        exit(1);
+    }
+
+    return result;
 }
 
 int main() {
